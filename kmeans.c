@@ -9,5 +9,5 @@ void generateNRandomKs(PGMImage *image, int *ks, int n) {
     // Lógica para gerar n k's aleatorios
 }
 
-void 
+
 

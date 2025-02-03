@@ -2,3 +2,5 @@ database
 random
 .vscode/
 output
+*.e
+*.pgm

@@ -12,6 +12,13 @@ typedef struct {
     unsigned char *pixels;      // Pixel data (use 'short' ao inves de 'char' para o range completo do PGM [0, 65535])
 } PGMImage;
 
+/**
+ * @brief Function to read a PGM file
+ * 
+ * @param filepath 
+ * @param image 
+ * @return int 
+ */
 int readPGM(const char *filepath, PGMImage *image) {
     FILE *file;
     if ((file = fopen(filepath, "rb")) == NULL) {
@@ -19,46 +26,45 @@ int readPGM(const char *filepath, PGMImage *image) {
         return -1;
     }
 
+    // Read the format (P2 or P5)
     if (fscanf(file, "%2s", image->format) != 1) {
         printf("Erro ao ler o tipo do PGM: %s\n", filepath);
         fclose(file);
         return -1;
     }
 
+    // Validate the format
     if (strcmp(image->format, "P2") && strcmp(image->format, "P5")) {
         printf("Não é um arquivo PGM válido (Esperado P2 ou P5)\n");
         fclose(file);
         return -1;
     }
 
+    // Read width, height, and maxval
     char line[MAX_LINE_LENGTH];
     int pixelIndex = 0;
-
-    // Read the image dimensions and max pixel value
     while (fgets(line, MAX_LINE_LENGTH, file)) {
-        // Pula linhas de comnetários
-        if (line[0] == '#') continue;
-
-        // Lê 'width' e 'height' 
-        if (sscanf(line, "%d %d", &image->width, &image->height) == 2) {
-            break;
-        } 
+        if (line[0] == '#') continue; // Skip comments
+        if (sscanf(line, "%d %d", &image->width, &image->height) == 2) break; // Read width and height
     }
 
-    // Lê 'maxval'
+    // Read maxval
     fgets(line, MAX_LINE_LENGTH, file);
     sscanf(line, "%hhd", &image->maxval);
 
-    // Alocando a memória para a imagem
+    // Allocate memory for pixel data
     if ((image->pixels = (unsigned char *) malloc((image->width)*(image->height) * sizeof(unsigned char))) == NULL) {
         printf("Memória insuficiente!\n");
         fclose(file);
         return -1;
     }
 
+    // Read pixel data
     if (!strcmp(image->format, "P5")) {
+        // Binary format (P5)
         fread(image->pixels, sizeof(unsigned char), (image->width)*(image->height), file);
     } else if (!strcmp(image->format, "P2")) {
+        // ASCII format (P2)
         while (fgets(line, MAX_LINE_LENGTH, file)) {
             char pixel[3];
             char ch;
@@ -78,11 +84,18 @@ int readPGM(const char *filepath, PGMImage *image) {
 
 }
 
-void makePGM(const char *filename, const PGMImage *image) {
+/**
+ * @brief Function to write a PGM file
+ * 
+ * @param filename 
+ * @param image 
+ * @return int 
+ */
+int makePGM(const char *filename, const PGMImage *image) {
     FILE *file;
     if ((file = fopen(filename, "w+")) == NULL) {
         printf("Erro ao abrir/criar o arquivo");
-        return;
+        return 1;
     }
 
     fprintf(file, "%s\n", image->format);
@@ -101,12 +114,13 @@ void makePGM(const char *filename, const PGMImage *image) {
         }
     }
     fclose(file);
+    return 0;
 }
 
 /**
- * @brief Function to switch between PGMImage format field values, from P2 to P5, or from P5 to P2.
+ * @brief Function to switch between PGM formats (P2 <-> P5)
  * 
- * @param image Pointer to the PGMImage wanted to change
+ * @param image 
  */
 void switchPGMType(PGMImage *image) {
     image->format[1] = (image->format[1] == '2') ? '5' : '2';

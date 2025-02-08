@@ -5,28 +5,56 @@
 #include <time.h>
 
 // Project Headers
-#include "kmeans.h"
-#include "pgm.h"
-#include "utils.h"
+#include "lib/pgm.h"
+#include "lib/kmeans.h"
+#include "lib/utils.h"
 
-int main() {
+int main(int argc, char const *argv[]) {
     // Main 
 
 
 
-    // Testing zone
-    PGMImage image;
+        /* Testing zone for pgm.c */
+    // PGMImage image;
 
-    if (!readPGM("../database/dataset_Herlev_reduzido_PGM/carcinoma_in_situ/149143370-149143378-001.pgm", &image)) {
+    // if (!readPGM("../database/dataset_Herlev_reduzido_PGM/carcinoma_in_situ/149143370-149143378-001.pgm", &image)) {
 
-        makePGM("newImage-P5.pgm", &image);
-        switchPGMType(&image);
-        makePGM("newImage-P2.pgm", &image);
+    //     makePGM("newImage-P5.pgm", &image);
+    //     switchPGMType(&image);
+    //     makePGM("newImage-P2.pgm", &image);
 
-        freePGM(&image);
-    } else {
-        printf("Failed to load PGM file.\n");
+    //     freePGM(&image);
+    // } else {
+    //     printf("Failed to load PGM file.\n");
+    // }
+
+        /* Testing zone for kmeans.c */
+    if (argc != 4) {
+        printf("Uso: %s <imagemEntrada.pgm> <imagemSaida.pgm> <k>\n", argv[0]);
+        exit(1);
     }
+
+    PGMImage image;
+    int k = atoi(argv[3]);
+
+    // Lê a imagem de entrada
+    if (readPGM(argv[1], &image) != 0) {
+        fprintf(stderr, "Erro ao ler a imagem de entrada.\n");
+        exit(1);
+    }
+
+    // Aplica o k-means à imagem
+    kmeansClustering(&image, k, 30); // 30 iterações
+
+    switchPGMType(&image);
+
+    // Salva a imagem resultante
+    makePGM(argv[2], &image);
+
+    // Libera a memória alocada para os pixels
+    freePGM(&image);
+    
+    
 
     return 0;
 }

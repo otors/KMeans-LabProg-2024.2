@@ -10,7 +10,7 @@ typedef struct {
 
 int readPGM(const char *filepath, PGMImage *image);
 
-void makePGM(const char *filename, PGMImage *image);
+int makePGM(const char *filename, PGMImage *image);
 
 void switchPGMType(PGMImage *image);
 

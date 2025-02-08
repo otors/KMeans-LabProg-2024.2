@@ -3,4 +3,5 @@ random
 .vscode/
 output
 *.e
+*.o
 *.pgm

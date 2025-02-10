@@ -1,6 +1,13 @@
+/* ∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗ ∗/
+/* Aluno: Henrique Santos Dumont Saraiva                   ∗/
+/∗ Matrícula: 2024.1045050154                              ∗/
+/∗ Avaliação 04: Trabalho Final                            ∗/
+/∗ 04.505.23 − 2024.2 − Prof. Daniel Ferreira              ∗/
+/∗ Compilador: gcc 13.3.0                                  ∗/
+/∗ ∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗ */
+
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 
 unsigned char *allocMemUC(unsigned int qtd) {
     unsigned char *p = NULL;

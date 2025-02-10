@@ -1,3 +1,11 @@
+/* ∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗ ∗/
+/* Aluno: Oto Ribeiro Serafim                              ∗/
+/∗ Matrícula: 2024.1045050189                              ∗/
+/∗ Avaliação 04: Trabalho Final                            ∗/
+/∗ 04.505.23 − 2024.2 − Prof. Daniel Ferreira              ∗/
+/∗ Compilador: gcc 13.3.0                                  ∗/
+/∗ ∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗ */
+
 #ifndef UTILS_H
 #define UTILS_H 1
 

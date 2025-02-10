@@ -1,3 +1,12 @@
+/* ∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗ ∗/
+/* Aluno: Matheus Rodrigues Ferreira                       ∗/
+/∗ Matrícula: 2024.1045050430                              ∗/
+/∗ Avaliação 04: Trabalho Final                            ∗/
+/∗ 04.505.23 − 2024.2 − Prof. Daniel Ferreira              ∗/
+/∗ Compilador: gcc 13.3.0                                  ∗/
+/∗ ∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗ */
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -15,14 +24,14 @@ void kmeansClustering(PGMImage *image, int k, int maxIter) {
     // Inicializa os centróides com valores aleatórios
     srand(time(NULL));
     for (int i = 0; i < k; i++) {
-        centroids[i] = image->pixels[rand() % size]; // Também é possível: centroids[i] = rand() % (1+image->maxval);
+        centroids[i] = image->pixels[rand() % size];
     }
 
     // Executa o k-means
     for (int iter = 0; iter < maxIter; iter++) {
         // Atribui cada pixel ao cluster mais próximo
         for (int i = 0; i < size; i++) {
-            int pixelValue = image->pixels[i];  // Evita acessos repetidos à memória
+            int pixelValue = image->pixels[i];
             int minIndex = 0;
             int minDist = abs(pixelValue - centroids[0]);
 
@@ -46,7 +55,7 @@ void kmeansClustering(PGMImage *image, int k, int maxIter) {
         }
         for (int j = 0; j < k; j++) {
             if (counts[j] > 0) {
-                centroids[j] = sums[j] / counts[j]; // Ignorando casas decimais, testar com float depois.
+                centroids[j] = sums[j] / counts[j]; 
             }
         }
 

@@ -10,6 +10,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "lib/utils.h"
+
 #define MAX_LINE_LENGTH 1024
 
 // Struct to store PGM image data
@@ -61,7 +63,8 @@ int readPGM(const char *filepath, PGMImage *image) {
     sscanf(line, "%hhd", &image->maxval);
 
     // Allocate memory for pixel data
-    if ((image->pixels = (unsigned char *) malloc((image->width)*(image->height) * sizeof(unsigned char))) == NULL) {
+    int size = image->width*image->height;
+    if ((image->pixels = allocMemUC(size)) == NULL) {
         printf("Memória insuficiente!\n");
         fclose(file);
         return -1;
@@ -70,7 +73,7 @@ int readPGM(const char *filepath, PGMImage *image) {
     // Read pixel data
     if (!strcmp(image->format, "P5")) {
         // Binary format (P5)
-        fread(image->pixels, sizeof(unsigned char), (image->width)*(image->height), file);
+        fread(image->pixels, sizeof(unsigned char), size, file);
     } else if (!strcmp(image->format, "P2")) {
         // ASCII format (P2)
         while (fgets(line, MAX_LINE_LENGTH, file)) {
@@ -100,9 +103,10 @@ int readPGM(const char *filepath, PGMImage *image) {
  * @return int 
  */
 int makePGM(const char *filename, const PGMImage *image) {
+    int size = image->width*image->height;
     FILE *file;
     if ((file = fopen(filename, "w+")) == NULL) {
-        printf("Erro ao abrir/criar o arquivo");
+        printf("Erro ao criar o arquivo");
         return 1;
     }
 
@@ -110,11 +114,11 @@ int makePGM(const char *filename, const PGMImage *image) {
     fprintf(file, "%d %d\n", image->width, image->height);
     fprintf(file, "%hd\n", image->maxval);
     if (image->format[1] == '5') {
-        fwrite(image->pixels, sizeof(unsigned char), (image->width)*(image->height), file);
+        fwrite(image->pixels, sizeof(unsigned char), size, file);
     } else if (image->format[1] == '2') {
-        for (int k = 0; k < (image->width)*(image->height); k++) {
+        for (int k = 0; k < size; k++) {
             fprintf(file, "%hd", image->pixels[k]);
-            if (!((k+1) % (image->width)) && k+1 != (image->width)*(image->height)) {
+            if (!((k+1) % (image->width)) && k+1 != size) {
                 fprintf(file, "\n");
             } else {
                 fprintf(file, " ");

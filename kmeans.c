@@ -16,10 +16,13 @@
 #include "lib/utils.h" // Inclui o arquivo de cabeçalho utils.h
 
 // Função para aplicar o algoritmo k-means à imagem
-void kmeansClustering(PGMImage *image, int k, int maxIter) {
+int kmeansClustering(PGMImage *image, int k, int maxIter) {
     int size = image->width * image->height;
-    unsigned char *centroids = allocMemUC(k); // Use 'short' ao inves de 'char' para o range completo do PGM [0, 65535]
+    float *centroids = allocMemFloat(k);
+    float *old_centroids = allocMemFloat(k);
     unsigned char *labels = allocMemUC(size);
+
+    int iterations = 0;
 
     // Inicializa os centróides com valores aleatórios
     srand(time(NULL));
@@ -54,13 +57,19 @@ void kmeansClustering(PGMImage *image, int k, int maxIter) {
             counts[labels[i]]++;
         }
         for (int j = 0; j < k; j++) {
+            old_centroids[j] = centroids[j];
             if (counts[j] > 0) {
-                centroids[j] = sums[j] / counts[j]; 
+                centroids[j] = sums[j] / (float)counts[j]; 
             }
         }
 
         free(sums);
         free(counts);
+
+        iterations++;
+        if (iter != 0) {
+            if (checkDiffOnThreshold(old_centroids, centroids, k, 0.5)) break;
+        }
     }
 
     // Aplica a clusterização à imagem
@@ -71,4 +80,6 @@ void kmeansClustering(PGMImage *image, int k, int maxIter) {
     // Libera a memória alocada
     free(centroids);
     free(labels);
+
+    return iterations;
 }

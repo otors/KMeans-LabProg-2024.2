@@ -15,6 +15,10 @@
 
 unsigned char *allocMemUC(unsigned int qtd);
 
+float *allocMemFloat(unsigned int qtd);
+
+int checkDiffOnThreshold(float *v1, float *v2, int size, float threshold);
+
 void printArrayUnsignedChar(unsigned char *arr, int size);
 
 void printMatrixUnsignedChar(unsigned char *pm, int rows, int cols);

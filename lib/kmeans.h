@@ -15,6 +15,6 @@
 
 #include "pgm.h"
 
-void kmeansClustering(PGMImage *image, int k, int maxIter);
+int kmeansClustering(PGMImage *image, int k, int maxIter);
 
 #endif

@@ -18,6 +18,22 @@ unsigned char *allocMemUC(unsigned int qtd) {
     return p;
 }
 
+float *allocMemFloat(unsigned int qtd) {
+    float *p = NULL;
+    if (!(p = (float *) malloc(qtd * sizeof(float)))){
+        puts("Memória insuficiente");
+        exit(1);
+    }
+    return p;
+}
+
+int checkDiffOnThreshold(float *v1, float *v2, int size, float threshold) {
+    for (int i = 0; i < size; i++) {
+        if (abs(v1[i]-v2[i]) > threshold) return 0; 
+    }
+    return 1;
+}
+
 void printArrayUnsignedChar(unsigned char *arr, int size) {
     for (int k = 0; k < size; k++) {
         printf("[");

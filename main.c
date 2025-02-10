@@ -52,7 +52,7 @@ int main(int argc, char const *argv[]) {
     }
 
     // Aplica o k-means à imagem
-    kmeansClustering(&image, k, 30); // 30 iterações
+    int iter = kmeansClustering(&image, k, 30); // 30 iterações
 
     switchPGMType(&image);
 
@@ -61,6 +61,8 @@ int main(int argc, char const *argv[]) {
 
     // Libera a memória alocada para os pixels
     freePGM(&image);
+
+    printf("Sucesso com %d iterações!", iter);
     
     
 

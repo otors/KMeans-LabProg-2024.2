@@ -15,6 +15,8 @@
 
 unsigned char *allocMemUC(unsigned int qtd);
 
+int *allocMemInt(unsigned int qtd);
+
 float *allocMemFloat(unsigned int qtd);
 
 int checkDiffOnThreshold(float *v1, float *v2, int size, float threshold);

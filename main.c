@@ -32,7 +32,7 @@ int main(int argc, char const *argv[]) {
     //     makePGM("newImage-P2.pgm", &image);
 
     //     freePGM(&image);
-    // } else {
+    // } else {...
     //     printf("Failed to load PGM file.\n");
     // }
 
@@ -62,7 +62,7 @@ int main(int argc, char const *argv[]) {
     // Libera a memória alocada para os pixels
     freePGM(&image);
 
-    printf("Sucesso com %d iterações!", iter);
+    printf("Sucesso com %d iterações!\n", iter);
     
     
 

@@ -9,6 +9,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/**
+ * @brief Aloca memória para um ponteiro de 'unsigned char'.
+ * 
+ * @param qtd 
+ * @return unsigned char* 
+ */
 unsigned char *allocMemUC(unsigned int qtd) {
     unsigned char *p = NULL;
     if (!(p = (unsigned char *) malloc(qtd * sizeof(unsigned char)))){
@@ -18,6 +24,27 @@ unsigned char *allocMemUC(unsigned int qtd) {
     return p;
 }
 
+/**
+ * @brief Aloca memória para um ponteiro de 'int'.
+ * 
+ * @param qtd 
+ * @return unsigned char* 
+ */
+int *allocMemInt(unsigned int qtd) {
+    int *p = NULL;
+    if (!(p = (int *) malloc(qtd * sizeof(int)))){
+        puts("Memória insuficiente");
+        exit(1);
+    }
+    return p;
+}
+
+/**
+ * @brief Aloca memória para um ponteiro de 'float'.
+ * 
+ * @param qtd 
+ * @return unsigned char* 
+ */
 float *allocMemFloat(unsigned int qtd) {
     float *p = NULL;
     if (!(p = (float *) malloc(qtd * sizeof(float)))){
@@ -27,6 +54,15 @@ float *allocMemFloat(unsigned int qtd) {
     return p;
 }
 
+/**
+ * @brief Compara os valores de dois vetores verificando se a diferença de algum deles é maior do que o threshold.
+ * 
+ * @param v1 
+ * @param v2 
+ * @param size 
+ * @param threshold 
+ * @return int 
+ */
 int checkDiffOnThreshold(float *v1, float *v2, int size, float threshold) {
     for (int i = 0; i < size; i++) {
         if (abs(v1[i]-v2[i]) > threshold) return 0; 
@@ -34,13 +70,26 @@ int checkDiffOnThreshold(float *v1, float *v2, int size, float threshold) {
     return 1;
 }
 
-void printArrayUnsignedChar(unsigned char *arr, int size) {
+/**
+ * @brief Imprime um array de 'int'. Foi usado pra motivos de teste
+ * 
+ * @param arr 
+ * @param size 
+ */
+void printArrayInt(int *arr, int size) {
     for (int k = 0; k < size; k++) {
         printf("[");
         (k = size-1) ? printf("%d]\n", *(arr+k)): printf("%d, ", *(arr+k));
     }
 }
 
+/**
+ * @brief Imprime um array de 'unsigned char'. Foi usado pra motivos de teste
+ * 
+ * @param pm 
+ * @param rows 
+ * @param cols 
+ */
 void printMatrixUnsignedChar(unsigned char *pm, int rows, int cols) {
     for (int k = 0; k < (rows*cols); k++) {
         if (!(k%cols)) printf("[");

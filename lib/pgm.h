@@ -22,6 +22,8 @@ int makePGM(const char *filename, PGMImage *image);
 
 void switchPGMType(PGMImage *image);
 
+int *getHistogram(PGMImage image);
+
 void freePGM(PGMImage *image);
 
 #endif

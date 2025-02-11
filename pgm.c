@@ -139,6 +139,18 @@ void switchPGMType(PGMImage *image) {
 }
 
 /**
+ * @brief Returns an histogram of the image.
+ * 
+ * @param image 
+ * @return int* 
+ */
+int *getHistogram(PGMImage image) {
+    int *histogram = allocMemInt(image.maxval+1);
+    for (int k = 0; k < image.height*image.width; k++) histogram[image.pixels[k]]++;
+    return histogram;
+}
+
+/**
  * @brief Function to free memory allocated for PGMImage
  * 
  * @param image 

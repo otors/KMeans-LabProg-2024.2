@@ -1,7 +1,6 @@
-database
-random
+/database/
+/random/
 .vscode/
-output
 *.e
 *.o
 *.pgm

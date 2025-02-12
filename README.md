@@ -17,3 +17,5 @@ Clone esse repositorio para uma pasta em seu computador e descompacte o dataset 
 `imagemSaida.pgm` é o nome do arquivo de saida do programa que será armazenado em `/output/`.
 
 `k` é a quantidade de clusters que será usada pelo kmeans.
+
+Exemplo: `./main.e carcinoma_in_situ/149143370-149143378-001.pgm 149143370-149143378-001-k.pgm 3`

@@ -3,6 +3,9 @@ all: main.e
 main.e: main.c kmeans.o pgm.o utils.o
 	gcc -o main.e main.c kmeans.o pgm.o utils.o
 
+histograma.e: histogram.c pgm.o
+	gcc -o histograma.e histograma.c pgm.o
+
 kmeans.o: kmeans.c pgm.o utils.o 
 	gcc -o kmeans.o -c kmeans.c
 

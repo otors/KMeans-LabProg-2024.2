@@ -1,3 +1,11 @@
+/* ∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗ ∗/
+/* Aluno: João Victor Pequeno Damasceno                    ∗/
+/∗ Matrícula: 2024.1045050081                              ∗/
+/∗ Avaliação 04: Trabalho Final                            ∗/
+/∗ 04.505.23 − 2024.2 − Prof. Daniel Ferreira              ∗/
+/∗ Compilador: gcc 13.3.0                                  ∗/
+/∗ ∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "lib/pgm.h" // Inclui o arquivo de cabeçalho pgm.h

@@ -10,10 +10,10 @@
 #define _PGM_H 1
 
 typedef struct {
-    char format[3];             // Format "P2" or "P5"
-    int width, height;          // Width and Height of the image
-    unsigned char maxval;       // From 0 to 255 (use 'short' ao inves de 'char' para o range completo do PGM [0, 65535])
-    unsigned char *pixels;      // Pixel data (use 'short' ao inves de 'char' para o range completo do PGM [0, 65535])
+    char format[3];             // Formato da imagem: "P2" (ASCII) ou "P5" (binário)
+    int width, height;          // Largura e altura da imagem
+    unsigned char maxval;       // Valor máximo de intensidade dos pixels de 0 a 255 (use 'short' ao inves de 'char' para o range completo do PGM [0, 65535])
+    unsigned char *pixels;      // Array que armazena os valores dos pixels (use 'short' ao inves de 'char' para o range completo do PGM [0, 65535])
 } PGMImage;
 
 int readPGM(const char *filepath, PGMImage *image);
